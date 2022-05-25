@@ -34,6 +34,7 @@ body {
   border: none;
   background-color: lightslategray;
   color: white;
+  cursor: pointer;
 }
 
 .todo-list__tabs {
@@ -60,15 +61,53 @@ body {
   display: flex;
   flex-direction: column;
   list-style-type: none;
+
+  perspective: 500pc;
 }
 
-.todo-list__items li {
+.todo-list__items > li {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 10px;
   padding: 10px 20px;
   background-color: white;
+}
+
+.todo-list__items > li:hover > .todo-list__item-actions {
+  opacity: 1;
+  transform: rotateY(0deg);
+}
+
+.todo-list__item-actions {
+  position: absolute;
+  left: -100px;
+  display: flex;
+  width: 100px;
+  height: 100%;
+  opacity: 0;
+  transition: transform 400ms, opacity 400ms;
+  transform: rotateY(90deg);
+  transform-origin: right;
+}
+
+.todo-list__item-actions > li {
+  display: inline-flex;
+  align-items: center;
+  flex: 1;
+  justify-content: center;
+  height: 100%;
+  color: white;
+  cursor: pointer;
+}
+
+.todo-list__item-actions > li:nth-child(1) {
+  background-color: #f0a48c;
+}
+
+.todo-list__item-actions > li:nth-child(2) {
+  background-color: #70c670;
 }
 
 .todo-list__not-found {
